@@ -6,6 +6,7 @@ import Section from './components/UI/Section'
 import ContactForm from './components/contactForm'
 import ContactList from './components/contactList'
 import Filter from './components/filter'
+import Notification from './components/notification'
 
 class App extends Component {
   state = {
@@ -66,9 +67,12 @@ class App extends Component {
           </Section>
           <Section title='Contacts'>
             <Filter value={this.state.filter} onChange={this.filterHandler} />
-            <ContactList items={filteredContacts}
-              onDelete={this.deleteContact}>
-            </ContactList>
+            {filteredContacts.length > 0 ? (
+              <ContactList items={filteredContacts}
+                onDelete={this.deleteContact}>
+              </ContactList>
+            )
+              : (<Notification message="No any contacts here"></Notification>)}
           </Section>
         </Container>
 
