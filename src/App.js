@@ -26,7 +26,9 @@ class App extends Component {
       number,
     }
 
-    if (contact.name === name) {
+    const { contacts } = this.state
+
+    if (contacts.some(contact => contact.name === name)) {
       alert(`${name} is already in contacts.`);
       return;
     }
@@ -34,6 +36,8 @@ class App extends Component {
     this.setState(prevState => ({
       contacts: [contact, ...prevState.contacts]
     }));
+
+    // contact => contact.name !== name ? this.setState(prevState => ({ contacts: [contact, ...prevState.contacts] })) : alert(`${name} is already in contacts.`);
   };
 
   filterHandler = event => {
