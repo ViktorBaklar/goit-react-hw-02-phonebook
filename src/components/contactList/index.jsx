@@ -1,25 +1,20 @@
 import ContactItem from '../contactItem'
 import style from './contactList.module.css'
-import uniqueId from 'lodash/uniqueId';
 
-const ContactList = ({ contacts, onDeleteContact }) => (
+const ContactList = ({ items, onDelete }) => (
   <ul className={style.contactList}>
     {
-      contacts.map(contact => {
-        let id = uniqueId("prefix-")
-        const name = contact
-        return (
-          <li /* key={id} */>
-            <ContactItem
-              id={id}
-              name={name}
-              // number={number}
-              onDeleteContact={onDeleteContact}
-            />
-          </li>)
-      })
+      items.map(({ id, name, number }) => (
+        <ContactItem
+          key={id}
+          id={id}
+          name={name}
+          number={number}
+          onDelete={onDelete}
+        />
+      ))
     }
-  </ul>
+  </ul >
 )
 
 export default ContactList;
